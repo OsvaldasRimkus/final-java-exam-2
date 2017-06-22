@@ -40,8 +40,7 @@ public class ResourceController {
 
 	/**
 	 * 
-	 * @param id
-	 *            id of Client to delete
+	 * @param id id of Resource to delete
 	 */
 	@DeleteMapping("/api/resources/{id}")
 	@ResponseStatus(HttpStatus.OK)
@@ -51,14 +50,15 @@ public class ResourceController {
 
 	/**
 	 * 
-	 * @param client
-	 *            object that holds data for new client creation
+	 * @param resource
+	 *            object that holds data for new resource creation
 	 * @return
 	 */
 	@PostMapping("/api/resources")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Resource registerResource(@RequestBody Resource client) {
-		return resourceRepository.save(client);
+	public Resource registerResource(@RequestBody Resource resource) {
+		System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+		return resourceRepository.save(resource);
 	}
-	
+
 }
