@@ -15,18 +15,18 @@ import lt.akademija.exam.client.ClientRepository;
 public class ResourceRepository {
 
 	private static final Logger LOGGER = Logger.getLogger(ClientRepository.class.getName());
-	
+
 	private boolean[] sectors = new boolean[50];
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	public void delete(Long id) {
 		LOGGER.log(Level.INFO, "OR LOGGING: resource with id " + id + " removed");
 		// emptying the space in the sector
 		List<Resource> fullListOfResources = entityManager.createNamedQuery("findAllResources").getResultList();
 		String sectorToBeEmptied = "";
-		for (int i = 0; i < fullListOfResources.size(); i ++) {
+		for (int i = 0; i < fullListOfResources.size(); i++) {
 			if (id == fullListOfResources.get(i).getId()) {
 				sectorToBeEmptied = fullListOfResources.get(i).getResourceKeepingSector();
 			}
@@ -46,12 +46,13 @@ public class ResourceRepository {
 				break;
 			}
 		}
-		//checks if sector space was not changed and left default, will not save new resoure in DB
+		// checks if sector space was not changed and left default, will not
+		// save new resoure in DB
 		if (resource.getResourceKeepingSector().equals("N/A")) {
 			LOGGER.log(Level.INFO, "OR LOGGING: new resource coule not be saved, all holding sectors are ocupied");
 			return null;
 		}
-		
+
 		LOGGER.log(Level.INFO, "OR LOGGING: new resource saved");
 		return entityManager.merge(resource);
 	}
@@ -60,5 +61,5 @@ public class ResourceRepository {
 		LOGGER.log(Level.INFO, "OR LOGGING: all resources from DB returned");
 		return entityManager.createNamedQuery("findAllResources").getResultList();
 	}
-	
+
 }

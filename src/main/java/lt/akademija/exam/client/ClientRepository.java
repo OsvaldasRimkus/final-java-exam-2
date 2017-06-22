@@ -5,9 +5,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * @author ggrazevicius
@@ -17,6 +21,9 @@ import java.util.logging.Logger;
 public class ClientRepository {
 
 	private static final Logger LOGGER = Logger.getLogger(ClientRepository.class.getName());
+
+	Logger logger = Logger.getLogger("MyLog");
+	FileHandler fh;
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -47,6 +54,7 @@ public class ClientRepository {
 		// checks if client has empty fields
 		if (client.getFirstName().equals("") || client.getLastName().equals("") || client.getDateOfBirth().equals("")
 				|| client.getPhoneNumber().equals("") || client.getClientType().equals("")) {
+
 			LOGGER.log(Level.WARNING, "OR LOGGING: cannot save client, all fields are mandatory");
 			return null;
 		}

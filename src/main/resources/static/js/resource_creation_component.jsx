@@ -1,7 +1,7 @@
 var ResourceCreationComponent = React.createClass({
 
     getInitialState: function() {
-        return {resourceTitle: '', resourceWeight: '', resourceKeepingSector: 'N/A', dateOfKeepingStart: 'N/A'};
+        return {resourceTitle: '', resourceWeight: '', client:'', resourceKeepingSector: 'N/A', dateOfKeepingStart: 'N/A'};
     },
 
     handleTitleChange: function(event) {
@@ -12,10 +12,15 @@ var ResourceCreationComponent = React.createClass({
         this.setState({resourceWeight: event.target.value})
     },
 
+    handleClientChange: function(event) {
+        this.setState({client: event.target.value})
+    },
+
     registerResource: function() {
         axios.post('http://localhost:8080/api/resources', {
             resourceTitle: this.state.resourceTitle,
             resourceWeight: this.state.resourceWeight,
+            client: this.state.client,
             resourceKeepingSector: this.state.resourceKeepingSector,
             dateOfKeepingStart: this.state.dateOfKeepingStart
         }).then(result => window.location = "#/allResources");
@@ -41,6 +46,10 @@ var ResourceCreationComponent = React.createClass({
                         <div className="form-group">
                             <label htmlFor="weight">Weight</label>
                             <input className="form-control" id="weight" name="weight" value={this.props.resourceWeight} onChange={this.handleWeightChange}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="client">Weight</label>
+                            <input className="form-control" id="client" name="client" value={this.props.client} onChange={this.handleClientChange}/>
                         </div>
                         <div className="form-group">
                             <input className="btn btn-primary" id="registerBtn" type="button" value="Register" onClick={this.registerResource}/>
