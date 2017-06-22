@@ -28,12 +28,23 @@ public class ClientRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	/**
+	 * returns a client entity from DB by ID
+	 * @param id
+	 * @return
+	 */
 	@Transactional(readOnly = true)
 	public Client get(Long id) {
 		LOGGER.log(Level.INFO, "OR LOGGING: client with id " + id + " info returned to program user");
 		return entityManager.find(Client.class, id);
 	}
 
+	/**
+	 * saves client to the DB
+	 * 
+	 * @param client
+	 * @return
+	 */
 	@Transactional
 	public Client save(Client client) {
 		// gets all clients
@@ -63,12 +74,22 @@ public class ClientRepository {
 		return entityManager.merge(client);
 	}
 
+	/**
+	 * deletes client from DB by ID
+	 * 
+	 * @param id
+	 */
 	@Transactional
 	public void delete(Long id) {
 		LOGGER.log(Level.INFO, "OR LOGGING: client with id " + id + " removed");
 		entityManager.remove(entityManager.find(Client.class, id));
 	}
 
+	/**
+	 * finds all Clients that are in DB
+	 * 
+	 * @return
+	 */
 	@Transactional(readOnly = true)
 	public List<Client> findAll() {
 		LOGGER.log(Level.INFO, "OR LOGGING: all clients from DB returned");
