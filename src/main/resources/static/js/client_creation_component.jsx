@@ -35,9 +35,15 @@ var ClientCreationComponent = React.createClass({
         console.log(response.data);
     },
 
+    goHome: function() {
+      window.location = "#/";
+    },
+
     render() {
         return (
             <div>
+                <h2>Client Creation Form</h2>
+                <button onClick={this.goHome}> home</button>
                 <form>
                     <fieldset>
                         <legend>Register a client</legend>
