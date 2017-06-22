@@ -23,6 +23,16 @@ public class ResourceRepository {
 	
 	public void delete(Long id) {
 		LOGGER.log(Level.INFO, "OR LOGGING: resource with id " + id + " removed");
+		// emptying the space in the sector
+		List<Resource> fullListOfResources = entityManager.createNamedQuery("findAllResources").getResultList();
+		String sectorToBeEmptied = "";
+		for (int i = 0; i < fullListOfResources.size(); i ++) {
+			if (id == fullListOfResources.get(i).getId()) {
+				sectorToBeEmptied = fullListOfResources.get(i).getResourceKeepingSector();
+			}
+		}
+		// clears sector
+		sectors[Integer.parseInt(sectorToBeEmptied)] = false;
 		entityManager.remove(entityManager.find(Resource.class, id));
 	}
 
@@ -36,6 +46,7 @@ public class ResourceRepository {
 				break;
 			}
 		}
+		//checks if sector space was not changed and left default, will not save new resoure in DB
 		if (resource.getResourceKeepingSector().equals("N/A")) {
 			LOGGER.log(Level.INFO, "OR LOGGING: new resource coule not be saved, all holding sectors are ocupied");
 			return null;

@@ -83,4 +83,12 @@ public class Resource {
 		this.dateOfKeepingStart = dateOfKeepingStart;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }

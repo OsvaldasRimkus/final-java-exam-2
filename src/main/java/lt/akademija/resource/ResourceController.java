@@ -57,7 +57,6 @@ public class ResourceController {
 	@PostMapping("/api/resources")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Resource registerResource(@RequestBody Resource resource) {
-		System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 		return resourceRepository.save(resource);
 	}
 
