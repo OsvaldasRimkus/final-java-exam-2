@@ -9,38 +9,65 @@ import javax.persistence.*;
  * @author orimkus
  */
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "findAllClients", query = "select client from Client client")
-})
+@NamedQueries({ @NamedQuery(name = "findAllClients", query = "select client from Client client") })
 public class Client {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+	/**
+	* Id of client
+	*/
+	@Id
+	@GeneratedValue
+	private Long id;
+	/**
+	 * The name of a given client
+	 */
+	private String firstName;
 
-    private String firstName;
+	/**
+	 * The surname of a given client
+	 */
+	private String lastName;
 
-    private String lastName;
-    
-    private String dateOfBirth;
-    
-    private String phoneNumber;
-    
-    private String clientType;
+	/**
+	 * the date of birth of a given client
+	 */
+	private String dateOfBirth;
 
-    public Client () {
-    	
-    }
-    
-    public Client( String firstName, String lastName, String dateOfBirth, String phoneNumber, String clientType) {
-    	this.firstName = firstName;
-    	this.lastName = lastName;
-    	this.dateOfBirth = dateOfBirth;
-    	this.phoneNumber = phoneNumber;
-    	this.clientType = clientType;
-    }
+	/**
+	 * the phone number of a given client
+	 */
+	private String phoneNumber;
 
-    public String getClientType() {
+	/**
+	 * the type of a client: Regular or VIP
+	 */
+	private String clientType;
+
+	/**
+	 * dummy constructor
+	 */
+	public Client() {
+
+	}
+
+	/**
+	 * real constructor
+	 * 
+	 * @param firstName
+	 * @param lastName
+	 * @param dateOfBirth
+	 * @param phoneNumber
+	 * @param clientType
+	 */
+	public Client(String firstName, String lastName, String dateOfBirth, String phoneNumber, String clientType) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.phoneNumber = phoneNumber;
+		this.clientType = clientType;
+	}
+
+	public String getClientType() {
 		return clientType;
 	}
 
@@ -73,26 +100,26 @@ public class Client {
 	}
 
 	public Long getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 }

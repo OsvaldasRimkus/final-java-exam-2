@@ -14,6 +14,13 @@ var ClientTableComponent = React.createClass({
             });
     },
 
+    removeClient: function(event) {
+      console.log(event.target.value);
+        axios.delete('http://localhost:8080/api/clients/' + 1, {
+        }).then(result => window.location = "#/");
+        console.log(response.data);
+    },
+
     render: function () {
         return (
             <table className="table">
@@ -24,6 +31,7 @@ var ClientTableComponent = React.createClass({
                         <th>Date Of Birth</th>
                         <th>Phone Number</th>
                         <th>Client Type</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +42,7 @@ var ClientTableComponent = React.createClass({
                         <td>{client.dateOfBirth}</td>
                         <td>{client.phoneNumber}</td>
                         <td>{client.clientType}</td>
+                        <td value={client.id} onClick={this.removeClient}>remove</td>
                     </tr>
                 )}
                 </tbody>
