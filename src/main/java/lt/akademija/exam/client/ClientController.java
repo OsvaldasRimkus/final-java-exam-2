@@ -45,6 +45,6 @@ public class ClientController {
     @PostMapping("/api/clients")
     @ResponseStatus(HttpStatus.CREATED)
     public Client registerClient(@RequestBody Client client) {
-        return clientRepository.save(client);
+    	return clientRepository.save(client);
     }
 }

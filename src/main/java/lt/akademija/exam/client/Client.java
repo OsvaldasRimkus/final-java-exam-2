@@ -26,17 +26,29 @@ public class Client {
     
     private String phoneNumber;
     
-    private boolean isClientVIP;
+    private String clientType;
 
-    public Client( String firstName, String lastName, String dateOfBirth, String phoneNumber, boolean clientType) {
+    public Client () {
+    	
+    }
+    
+    public Client( String firstName, String lastName, String dateOfBirth, String phoneNumber, String clientType) {
     	this.firstName = firstName;
     	this.lastName = lastName;
     	this.dateOfBirth = dateOfBirth;
     	this.phoneNumber = phoneNumber;
-    	this.isClientVIP = clientType;
+    	this.clientType = clientType;
     }
 
-    public String getDateOfBirth() {
+    public String getClientType() {
+		return clientType;
+	}
+
+	public void setClientType(String clientType) {
+		this.clientType = clientType;
+	}
+
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
@@ -52,12 +64,12 @@ public class Client {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public boolean isClientVIP() {
-		return isClientVIP;
+	public String getIsClientVIP() {
+		return clientType;
 	}
 
-	public void setClientVIP(boolean isClientVIP) {
-		this.isClientVIP = isClientVIP;
+	public void setIsClientVIP(String isClientVIP) {
+		this.clientType = isClientVIP;
 	}
 
 	public Long getId() {

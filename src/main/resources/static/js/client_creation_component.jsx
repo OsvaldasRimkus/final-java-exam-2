@@ -1,7 +1,7 @@
 var ClientCreationComponent = React.createClass({
 
     getInitialState: function() {
-        return {firstName: '', lastName: ''};
+        return {firstName: '', lastName: '', dateOfBirth: '', phoneNumber: '', clientType: ''};
     },
 
     handleFirstNameChange: function(event) {
@@ -12,11 +12,27 @@ var ClientCreationComponent = React.createClass({
         this.setState({lastName: event.target.value})
     },
 
+    handleDateOfBirthChange: function(event) {
+      this.setState({dateOfBirth: event.target.value})
+    },
+
+    handlePhoneNumberChange: function(event) {
+        this.setState({phoneNumber: event.target.value})
+    },
+
+    handleClientTypeChange: function(event) {
+      this.setState({clientType: event.target.value})
+    },
+
     registerClient: function() {
         axios.post('http://localhost:8080/api/clients', {
             firstName: this.state.firstName,
-            lastName: this.state.lastName
+            lastName: this.state.lastName,
+            dateOfBirth: this.state.dateOfBirth,
+            phoneNumber: this.state.phoneNumber,
+            clientType: this.state.clientType
         }).then(result => window.location = "#/");
+        console.log(response.data);
     },
 
     render() {
@@ -35,19 +51,17 @@ var ClientCreationComponent = React.createClass({
                         </div>
                         <div className="form-group">
                             <label htmlFor="dateOfBirth">Date Of Birth</label>
-                            <input className="form-control" id="lastName" name="lastName" value={this.props.lastName} onChange={this.handleLastNameChange}/>
+                            <input className="form-control" id="dateOfBirth" name="dateOfBirth" value={this.props.dateOfBirth} onChange={this.handleDateOfBirthChange}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="phoneNumber">Phone Number</label>
-                            <input className="form-control" id="lastName" name="lastName" value={this.props.lastName} onChange={this.handleLastNameChange}/>
+                            <input className="form-control" id="phoneNumber" name="phoneNumber" value={this.props.phoneNumber} onChange={this.handlePhoneNumberChange}/>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="clientType">Client Type</label>
-                            <select>
-								<option value="false">Regular</option>
-								<option value="true">VIP</option>
-							</select>
-                        </div>
+                        <select onChange={this.handleClientTypeChange}>
+                            <option >Choose client type</option>
+                            <option value="Regular">Regular</option>
+                            <option value="VIP">VIP</option>
+                        </select>
                         <div className="form-group">
                             <input className="btn btn-primary" id="registerBtn" type="button" value="Register" onClick={this.registerClient}/>
                         </div>
